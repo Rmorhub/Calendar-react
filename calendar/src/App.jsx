@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
+import Modal from './components/modal/Modal.jsx';
 
 import { getWeekStartDate, generateWeekRange } from './utils/dateUtils.js';
 
@@ -21,8 +22,14 @@ const App = () => {
 
   const weekDates = generateWeekRange(getWeekStartDate(currentDate));
 
+  const [createdWindow, setCreatedWindow] = useState(false);
   const createEventBtn = () => {
-    console.log('used');
+    setCreatedWindow(true);
+  };
+  console.log(createdWindow);
+
+  const closeEventBtn = () => {
+    setCreatedWindow(false);
   };
 
   return (
@@ -35,6 +42,7 @@ const App = () => {
         createEventBtn={createEventBtn}
       />
       <Calendar weekDates={weekDates} />
+      {createdWindow ? <Modal closeEventBtn={closeEventBtn} /> : null}
     </>
   );
 };

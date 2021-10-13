@@ -14,11 +14,7 @@ class Calendar extends Component {
 
   render() {
     const { weekDates } = this.props;
-    const today = new Date();
-    const actualEvents = events.filter(event => event.dateTo > today);
-    const closedEvents = events.filter(event => event.dateTo < today);
-    console.log(actualEvents);
-    console.log(closedEvents);
+    console.log(this.state.events);
 
     return (
       <section className="calendar">
@@ -26,7 +22,7 @@ class Calendar extends Component {
         <div className="calendar__body">
           <div className="calendar__week-container">
             <Sidebar />
-            <Week weekDates={weekDates} events={actualEvents} />
+            <Week weekDates={weekDates} events={this.state.events} />
           </div>
         </div>
       </section>
