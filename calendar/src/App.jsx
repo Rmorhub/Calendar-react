@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 import Modal from './components/modal/Modal.jsx';
+
 import events from './gateway/events.js';
 
 import { getWeekStartDate, generateWeekRange } from './utils/dateUtils.js';
@@ -37,10 +38,8 @@ const App = () => {
     setCreatedWindow(false);
     const form = document.querySelector('.event-form');
     const userData = Object.fromEntries(new FormData(form));
-    console.log(userData);
     const id = events.length + 1;
     const { title, description, date, startTime, endTime } = userData;
-    console.log(title, description, date, startTime, endTime);
     const pushObj = {
       id,
       title,
@@ -50,6 +49,8 @@ const App = () => {
     };
     events.push(pushObj);
   };
+
+  
 
   return (
     <>

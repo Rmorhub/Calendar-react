@@ -14,7 +14,15 @@ class Calendar extends Component {
 
   render() {
     const { weekDates } = this.props;
-    console.log(this.state.events);
+
+    const deleteEventHandler = eventId => {
+      const filtered = events.filter(elem => elem.id !== eventId);
+      events.splice(0, events.length);
+      filtered.forEach(elem => events.push(elem));
+      this.setState({
+        events,
+      });
+    };
 
     return (
       <section className="calendar">
@@ -22,7 +30,11 @@ class Calendar extends Component {
         <div className="calendar__body">
           <div className="calendar__week-container">
             <Sidebar />
-            <Week weekDates={weekDates} events={this.state.events} />
+            <Week
+              weekDates={weekDates}
+              events={this.state.events}
+              deleteEventHandler={deleteEventHandler}
+            />
           </div>
         </div>
       </section>

@@ -26,6 +26,17 @@
 }
 
 .delete-event-btn {
+  position: relative;
+  width: 80%;
+  background-color: grey;
+  z-index: 1;
+  border-radius: 8px;
+  padding: 8px;
+  color: #fff;
   cursor: pointer;
   border: none;
+
+  &:hover {
+    font-weight: bold;
+  }
 }
