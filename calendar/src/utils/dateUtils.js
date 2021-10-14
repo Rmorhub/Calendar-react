@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export const getWeekStartDate = date => {
   const dateCopy = new Date(date);
   const dayOfWeek = dateCopy.getDay();
