@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 
 import { getWeekStartDate, generateWeekRange } from './utils/dateUtils.js';
-import { getCurrentDate, redLine } from './gateway/calendarGateway.js';
+import { getCurrentDate } from './gateway/calendarGateway.js';
 
 import './common.scss';
-
 
 const App = () => {
   const currentDate = new Date();
@@ -17,10 +16,6 @@ const App = () => {
 
   const weekDates = generateWeekRange(getWeekStartDate(currentDate));
 
-  useEffect(() => {
-    redLine();
-  }, []);
-
   return (
     <>
       <Header
@@ -29,7 +24,6 @@ const App = () => {
         isCurrentDate={isCurrentDate}
         setCurrentDate={setCurrentDate}
         setCreatedWindow={setCreatedWindow}
-        redLine={redLine}
       />
       <Calendar
         weekDates={weekDates}

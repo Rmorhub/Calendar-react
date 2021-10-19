@@ -25,6 +25,7 @@ const Event = ({ height, marginTop, title, time, id, deleteEventHandler }) => {
       <div className="event__time">{time}</div>
       {!deleteEventWindow ? null : (
         <button className="delete-event-btn" onClick={() => deleteEventHandler(id)}>
+          <i className="far fa-trash-alt"></i>
           <span className="delete-event-text">Delete</span>
         </button>
       )}

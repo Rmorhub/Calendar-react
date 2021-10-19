@@ -1,0 +1,12 @@
+.red-line {
+  position: absolute;
+  width: 100%;
+  border-top: 2px solid red;
+  z-index: 10;
+
+  &__line {
+    width: 100%;
+    border-top: 2px solid red;
+    z-index: 10;
+  }
+}

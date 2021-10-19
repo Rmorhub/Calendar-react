@@ -1,5 +1,7 @@
 import React from 'react';
+import moment from 'moment';
 import Day from '../day/Day';
+import Redline from '../redTimeLine/RedLine';
 
 import './week.scss';
 
@@ -13,13 +15,22 @@ const Week = ({ weekDates, events, deleteEventHandler }) => (
         event => new Date(event.dateFrom) > dayStart && new Date(event.dateTo) < new Date(dayEnd),
       );
 
+      const curentDate = new Date();
+      const dateCurrentWeek = new Date(dayStart);
+
+      const dateNow = moment(curentDate).format('MMM DD YYYY');
+      const nextOrPrevDate = moment(dateCurrentWeek).format('MMM DD YYYY');
+
       return (
-        <Day
-          key={dayStart.getDate()}
-          dataDay={dayStart.getDate()}
-          dayEvents={dayEvents}
-          deleteEventHandler={deleteEventHandler}
-        />
+        <div className="calendar__day" data-day={dayStart.getDate()} key={dayStart.getDate()}>
+          <Day
+            key={dayStart.getDate()}
+            dataDay={dayStart.getDate()}
+            dayEvents={dayEvents}
+            deleteEventHandler={deleteEventHandler}
+          />
+          {dateNow !== nextOrPrevDate ? null : <Redline />}
+        </div>
       );
     })}
   </div>

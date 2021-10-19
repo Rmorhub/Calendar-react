@@ -8,23 +8,19 @@ const Day = ({ dataDay, dayEvents, deleteEventHandler }) => {
     .fill()
     .map((val, index) => index);
 
-  return (
-    <div className="calendar__day" data-day={dataDay}>
-      {hours.map(hour => {
-        // getting all events from the day we will render
-        const hourEvents = dayEvents.filter(event => new Date(event.dateFrom).getHours() === hour);
+  return hours.map(hour => {
+    // getting all events from the day we will render
+    const hourEvents = dayEvents.filter(event => new Date(event.dateFrom).getHours() === hour);
 
-        return (
-          <Hour
-            key={dataDay + hour}
-            dataHour={hour}
-            hourEvents={hourEvents}
-            deleteEventHandler={deleteEventHandler}
-          />
-        );
-      })}
-    </div>
-  );
+    return (
+      <Hour
+        key={dataDay + hour}
+        dataHour={hour}
+        hourEvents={hourEvents}
+        deleteEventHandler={deleteEventHandler}
+      />
+    );
+  });
 };
 
 export default Day;
