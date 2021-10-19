@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import events from '../../gateway/events';
+
 import './event.scss';
 
 const Event = ({ height, marginTop, title, time, id, deleteEventHandler }) => {
@@ -8,14 +8,14 @@ const Event = ({ height, marginTop, title, time, id, deleteEventHandler }) => {
     marginTop,
   };
 
-  const [deleteEventAsk, isDelete] = useState(false);
+  const [deleteEventWindow, toggleDeleteWindow] = useState(false);
 
   const showDeleteWindow = event => {
     event.preventDefault();
-    if (deleteEventAsk) {
-      isDelete(false);
+    if (deleteEventWindow) {
+      toggleDeleteWindow(false);
     } else {
-      isDelete(true);
+      toggleDeleteWindow(true);
     }
   };
 
@@ -23,11 +23,11 @@ const Event = ({ height, marginTop, title, time, id, deleteEventHandler }) => {
     <div style={eventStyle} id={id} className="event" onClick={showDeleteWindow}>
       <div className="event__title">{title}</div>
       <div className="event__time">{time}</div>
-      {deleteEventAsk ? (
+      {!deleteEventWindow ? null : (
         <button className="delete-event-btn" onClick={() => deleteEventHandler(id)}>
           <span className="delete-event-text">Delete</span>
         </button>
-      ) : null}
+      )}
     </div>
   );
 };

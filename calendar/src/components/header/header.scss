@@ -3,6 +3,12 @@
   height: 60px;
   padding: 0 48px;
   align-items: center;
+  background: rgb(76, 71, 175);
+  background: linear-gradient(
+    328deg,
+    rgba(76, 71, 175, 1) 14%,
+    rgba(47, 146, 53, 0.9727241238292192) 80%
+  );
 }
 
 .create-event-btn {
@@ -17,14 +23,19 @@
   &__today-btn {
     margin-left: 32px;
     padding: 0 16px;
+    background-color: rgba(76, 71, 175, 1);
+    color: #fff;
   }
 
   &__nav-icon {
     font-size: 16px;
     margin-left: 20px;
+    color: #fff;
   }
 
   &__displayed-month {
     margin-left: 10px;
+    font-size: 20px;
+    color: #fff;
   }
 }

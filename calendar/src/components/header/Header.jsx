@@ -5,7 +5,14 @@ import './header.scss';
 
 const DAYINWEEK = 7;
 
-const Header = ({ weekDates, currentDate, setCurrentDate, isCurrentDate, setCreatedWindow }) => {
+const Header = ({
+  weekDates,
+  currentDate,
+  setCurrentDate,
+  isCurrentDate,
+  setCreatedWindow,
+  redLine,
+}) => {
   const startMonthWeek = weekDates[0].getMonth();
   const endMonthWeek = weekDates[weekDates.length - 1].getMonth();
   const isWithNextMonth = startMonthWeek < endMonthWeek;
@@ -14,6 +21,9 @@ const Header = ({ weekDates, currentDate, setCurrentDate, isCurrentDate, setCrea
   const todayBtn = () => {
     const today = new Date();
     setCurrentDate(today.getDate());
+    setTimeout(() => {
+      redLine();
+    }, 0);
   };
 
   const createEventBtn = () => {
