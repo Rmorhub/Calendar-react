@@ -1,6 +1,6 @@
 # Calendar-react
 
-### [Layout-2](https://github.com/Rmorhub/Calendar-react)
+### [Calendar-react](https://github.com/Rmorhub/Calendar-react)
 
 ## [Git Hub Page](https://github.com/Rmorhub)
 
