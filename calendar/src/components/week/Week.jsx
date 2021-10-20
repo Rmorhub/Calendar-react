@@ -18,9 +18,6 @@ const Week = ({ weekDates, events, deleteEventHandler }) => (
       const curentDate = new Date();
       const dateCurrentWeek = new Date(dayStart);
 
-      const dateNow = moment(curentDate).format('MMM DD YYYY');
-      const nextOrPrevDate = moment(dateCurrentWeek).format('MMM DD YYYY');
-
       return (
         <div className="calendar__day" data-day={dayStart.getDate()} key={dayStart.getDate()}>
           <Day
@@ -29,7 +26,10 @@ const Week = ({ weekDates, events, deleteEventHandler }) => (
             dayEvents={dayEvents}
             deleteEventHandler={deleteEventHandler}
           />
-          {dateNow !== nextOrPrevDate ? null : <Redline />}
+          {moment(curentDate).format('MMM DD YYYY') !==
+          moment(dateCurrentWeek).format('MMM DD YYYY') ? null : (
+            <Redline />
+          )}
         </div>
       );
     })}

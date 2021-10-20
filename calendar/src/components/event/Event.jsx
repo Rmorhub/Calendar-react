@@ -20,6 +20,7 @@ const Event = ({ height, marginTop, title, time, id, deleteEventHandler }) => {
   };
 
   return (
+    <>
     <div style={eventStyle} id={id} className="event" onClick={showDeleteWindow}>
       <div className="event__title">{title}</div>
       <div className="event__time">{time}</div>
@@ -30,6 +31,7 @@ const Event = ({ height, marginTop, title, time, id, deleteEventHandler }) => {
         </button>
       )}
     </div>
+    </>
   );
 };
 
