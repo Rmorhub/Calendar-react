@@ -1,16 +1,16 @@
 # Calendar-react
 
-### [Calendar-react](https://youthful-jepsen-c1b826.netlify.app/)
-
-### [Calendar-react-github-page](https://github.com/Rmorhub/Calendar-react)
+## [Calendar-react Netlify](https://youthful-jepsen-c1b826.netlify.app/)
 
 ## [Git Hub Page](https://github.com/Rmorhub)
+
+### [Calendar-react-github-page](https://github.com/Rmorhub/Calendar-react)
 
 ## Project commands:
 
 - [npm start] "Starting project"
-- [npm build] "Bundling project"
-- [npm lint] "Static code analysis for errors and warnings"
+- [npm run build] "Bundling project"
+- [npm run lint] "Static code analysis for errors and warnings"
 
 
 ### The tech stack is:
