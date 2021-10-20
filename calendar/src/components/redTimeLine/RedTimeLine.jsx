@@ -17,7 +17,7 @@ const RedTimeLine = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [top]);
+  }, []);
 
   const style = {
     top,

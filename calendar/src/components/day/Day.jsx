@@ -11,7 +11,6 @@ const Day = ({ dataDay, dayEvents, deleteEventHandler }) => {
     .map((val, index) => index);
 
   return hours.map(hour => {
-    // getting all events from the day we will render
     const hourEvents = dayEvents.filter(event => new Date(event.dateFrom).getHours() === hour);
 
     return (

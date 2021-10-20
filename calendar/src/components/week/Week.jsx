@@ -12,13 +12,12 @@ const Week = ({ weekDates, events, deleteEventHandler }) => (
     {weekDates.map(dayStart => {
       const dayEnd = new Date(dayStart.getTime()).setHours(dayStart.getHours() + 24);
 
-      // getting all events from the day we will render
       const dayEvents = events.filter(
         event => new Date(event.dateFrom) > dayStart && new Date(event.dateTo) < new Date(dayEnd),
       );
 
-      const curentDate = new Date();
-      const dateCurrentWeek = new Date(dayStart);
+      const curentDate = moment(new Date()).format('MMM DD YYYY');
+      const dateCurrentWeek = moment(new Date(dayStart)).format('MMM DD YYYY');
 
       return (
         <div className="calendar__day" data-day={dayStart.getDate()} key={dayStart.getDate()}>
@@ -28,10 +27,7 @@ const Week = ({ weekDates, events, deleteEventHandler }) => (
             dayEvents={dayEvents}
             deleteEventHandler={deleteEventHandler}
           />
-          {moment(curentDate).format('MMM DD YYYY') !==
-          moment(dateCurrentWeek).format('MMM DD YYYY') ? null : (
-            <RedTimeLine />
-          )}
+          {curentDate !== dateCurrentWeek ? null : <RedTimeLine />}
         </div>
       );
     })}
