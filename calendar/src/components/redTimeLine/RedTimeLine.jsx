@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import './redline.scss';
+import './redTimeLine.scss';
 
 const getDistance = () => {
   const top = new Date().getHours() * 60 + new Date().getMinutes();
   return `${top}px`;
 };
 
-const Redline = () => {
+const RedTimeLine = () => {
   const [top, setTop] = useState(getDistance());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log('render');
       setTop(getDistance());
     }, 60000);
 
@@ -31,4 +30,4 @@ const Redline = () => {
   );
 };
 
-export default Redline;
+export default RedTimeLine;

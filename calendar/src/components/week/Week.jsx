@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import moment from 'moment';
 import Day from '../day/Day';
-import Redline from '../redTimeLine/RedLine';
+import RedTimeLine from '../redTimeLine/RedTimeLine';
 
 import './week.scss';
 
@@ -28,12 +30,18 @@ const Week = ({ weekDates, events, deleteEventHandler }) => (
           />
           {moment(curentDate).format('MMM DD YYYY') !==
           moment(dateCurrentWeek).format('MMM DD YYYY') ? null : (
-            <Redline />
+            <RedTimeLine />
           )}
         </div>
       );
     })}
   </div>
 );
+
+Week.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  events: PropTypes.array.isRequired,
+  deleteEventHandler: PropTypes.func.isRequired,
+};
 
 export default Week;

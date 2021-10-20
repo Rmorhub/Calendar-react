@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { months } from '../../utils/dateUtils.js';
 
 import './header.scss';
@@ -53,6 +55,14 @@ const Header = ({ weekDates, currentDate, setCurrentDate, isCurrentDate, setCrea
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  currentDate: PropTypes.object.isRequired,
+  setCurrentDate: PropTypes.func.isRequired,
+  isCurrentDate: PropTypes.number.isRequired,
+  setCreatedWindow: PropTypes.func.isRequired,
 };
 
 export default Header;

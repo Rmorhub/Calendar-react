@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Navigation from '../navigation/Navigation';
 import Week from '../week/Week';
@@ -53,6 +54,16 @@ const Calendar = ({ weekDates, setCreatedWindow, createdWindow }) => {
       {createdWindow ? <Modal closeEventBtn={closeEventBtn} createBtn={createBtn} /> : null}
     </>
   );
+};
+
+Calendar.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  setCreatedWindow: PropTypes.func.isRequired,
+  createdWindow: PropTypes.bool,
+};
+
+Calendar.defaultProps = {
+  createdWindow: false,
 };
 
 export default Calendar;
