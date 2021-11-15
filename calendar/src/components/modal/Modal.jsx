@@ -5,45 +5,34 @@ import { createEvent } from '../../gateway/eventsGateway';
 import './modal.scss';
 
 const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow }) => {
-  const [inputTextTitle, setInputTextTitle] = useState('');
-  const [inputTextDescription, setInputTextTitleDescription] = useState('');
-  const [inputDate, setInputDate] = useState('');
-  const [timeFrom, setTimeFrom] = useState('');
-  const [timeTo, setTimeTo] = useState('');
+  const [eventObj, setEventObj] = useState({
+    title: '',
+    description: '',
+    date: '',
+    dateTo: '',
+    dateFrom: '',
+  });
 
-  const hanndleChangeTitle = event => {
-    setInputTextTitle(event.target.value);
-  };
-
-  const hanndleChangeDescription = event => {
-    setInputTextTitleDescription(event.target.value);
-  };
-
-  const hanndleChangeDate = event => {
-    setInputDate(event.target.value);
-  };
-
-  const hanndleTimeFrom = event => {
-    setTimeFrom(event.target.value);
-  };
-
-  const hanndleTimeTo = event => {
-    setTimeTo(event.target.value);
+  const handleChange = event => {
+    setEventObj({
+      ...eventObj,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const sumbitBtn = event => {
     event.preventDefault();
 
     const eventData = {
-      title: inputTextTitle,
-      description: inputTextDescription,
-      dateFrom: new Date(`${inputDate} ${timeFrom}`),
-      dateTo: new Date(`${inputDate} ${timeTo}`),
+      ...eventObj,
+      dateFrom: new Date(`${eventObj.date} ${eventObj.dateFrom}`),
+      dateTo: new Date(`${eventObj.date} ${eventObj.dateTo}`),
     };
 
     createEvent(eventData).then(() => fetchEventsHandler());
     setCreatedWindow(false);
   };
+
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -57,8 +46,8 @@ const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow }) => {
               name="title"
               placeholder="Title"
               className="event-form__field"
-              value={inputTextTitle}
-              onChange={hanndleChangeTitle}
+              value={eventObj.title}
+              onChange={handleChange}
               required
             />
             <div className="event-form__time">
@@ -66,25 +55,25 @@ const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow }) => {
                 type="date"
                 name="date"
                 className="event-form__field"
-                value={inputDate}
-                onChange={hanndleChangeDate}
+                value={eventObj.date}
+                onChange={handleChange}
                 required
               />
               <input
                 type="time"
-                name="startTime"
+                name="dateFrom"
                 className="event-form__field"
-                value={timeFrom}
-                onChange={hanndleTimeFrom}
+                value={eventObj.dateFrom}
+                onChange={handleChange}
                 required
               />
               <span>-</span>
               <input
                 type="time"
-                name="endTime"
+                name="dateTo"
                 className="event-form__field"
-                value={timeTo}
-                onChange={hanndleTimeTo}
+                value={eventObj.dateTo}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -92,8 +81,8 @@ const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow }) => {
               name="description"
               placeholder="Description"
               className="event-form__field"
-              value={inputTextDescription}
-              onChange={hanndleChangeDescription}
+              value={eventObj.description}
+              onChange={handleChange}
               required
             ></textarea>
             <button type="submit" className="event-form__submit-btn">
