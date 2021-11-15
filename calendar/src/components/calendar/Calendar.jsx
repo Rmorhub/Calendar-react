@@ -51,7 +51,7 @@ const Calendar = ({ weekDates, setCreatedWindow, createdWindow }) => {
           </div>
         </div>
       </section>
-      {createdWindow ? <Modal closeEventBtn={closeEventBtn} createBtn={createBtn} /> : null}
+      {createdWindow && <Modal closeEventBtn={closeEventBtn} createBtn={createBtn} />}
     </>
   );
 };

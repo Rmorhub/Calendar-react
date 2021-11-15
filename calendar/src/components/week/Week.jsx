@@ -27,7 +27,7 @@ const Week = ({ weekDates, events, deleteEventHandler }) => (
             dayEvents={dayEvents}
             deleteEventHandler={deleteEventHandler}
           />
-          {curentDate !== dateCurrentWeek ? null : <RedTimeLine />}
+          {curentDate === dateCurrentWeek && <RedTimeLine />}
         </div>
       );
     })}
