@@ -30,16 +30,3 @@ export const deleteEvent = eventId =>
       throw new Error("Internal Server Error. Can't display events");
     }
   });
-
-export const getObjectForm = () => {
-  const form = document.querySelector('.event-form');
-  const userData = Object.fromEntries(new FormData(form));
-  const { title, description, date, startTime, endTime } = userData;
-
-  return {
-    title,
-    description,
-    dateFrom: new Date(`${date} ${startTime}`),
-    dateTo: new Date(`${date} ${endTime}`),
-  };
-};

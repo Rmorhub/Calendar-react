@@ -6,7 +6,7 @@ import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
 import Modal from '../modal/Modal';
 
-import { fetchEvents, createEvent, deleteEvent, getObjectForm } from '../../gateway/eventsGateway';
+import { fetchEvents, deleteEvent } from '../../gateway/eventsGateway';
 
 import './calendar.scss';
 
@@ -20,13 +20,6 @@ const Calendar = ({ weekDates, setCreatedWindow, createdWindow }) => {
   useEffect(() => {
     fetchEventsHandler();
   }, []);
-
-  const createBtn = event => {
-    event.preventDefault();
-
-    createEvent(getObjectForm()).then(() => fetchEventsHandler());
-    setCreatedWindow(false);
-  };
 
   const closeEventBtn = () => {
     setCreatedWindow(false);
@@ -51,7 +44,13 @@ const Calendar = ({ weekDates, setCreatedWindow, createdWindow }) => {
           </div>
         </div>
       </section>
-      {createdWindow && <Modal closeEventBtn={closeEventBtn} createBtn={createBtn} />}
+      {createdWindow && (
+        <Modal
+          closeEventBtn={closeEventBtn}
+          fetchEventsHandler={fetchEventsHandler}
+          setCreatedWindow={setCreatedWindow}
+        />
+      )}
     </>
   );
 };
