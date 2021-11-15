@@ -10,8 +10,15 @@ const DAYINWEEK = 7;
 const Header = ({ weekDates, currentDate, setCurrentDate, isCurrentDate, setCreatedWindow }) => {
   const startMonthWeek = weekDates[0].getMonth();
   const endMonthWeek = weekDates[weekDates.length - 1].getMonth();
+  const isBtwYear = startMonthWeek === 11 && endMonthWeek === 0;
   const isWithNextMonth = startMonthWeek < endMonthWeek;
   const currentYear = currentDate.getFullYear();
+  const nextYear = currentDate.getFullYear() + 1;
+
+  const btwYears = `${months[startMonthWeek]} ${currentYear} - ${months[endMonthWeek]} ${nextYear}`;
+  const currentMonthAndYear = !isWithNextMonth
+    ? `${months[startMonthWeek]} ${currentYear}`
+    : `${months[startMonthWeek]} - ${months[endMonthWeek]} ${currentYear}`;
 
   const todayBtn = () => {
     const today = new Date();
@@ -48,9 +55,7 @@ const Header = ({ weekDates, currentDate, setCurrentDate, isCurrentDate, setCrea
           ></i>
         </button>
         <span className="navigation__displayed-month">
-          {!isWithNextMonth
-            ? `${months[startMonthWeek]} ${currentYear}`
-            : `${months[startMonthWeek]} - ${months[endMonthWeek]} ${currentYear}`}
+          {!isBtwYear ? currentMonthAndYear : btwYears}
         </span>
       </div>
     </header>

@@ -8,7 +8,7 @@
 
 ## Project commands:
 
-- [npm start] "Starting project"
+- [npm start or yarn start] "Starting project"
 - [npm run build] "Bundling project"
 - [npm run lint] "Static code analysis for errors and warnings"
 
