@@ -22,19 +22,32 @@
   z-index: 10;
 }
 
-.create-event {
+.edit_create-event {
   display: flex;
   flex-direction: column;
 
-  &__close-btn {
+  &_buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  &__delete-btn {
     margin-left: auto;
+    cursor: pointer;
+    outline: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+
+  &__close-btn {
+    margin-left: 25px;
+    margin-right: 0;
     transform: rotate(45deg) scale(2);
     outline: none;
     border: none;
     cursor: pointer;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
     background: transparent;
   }
 }
@@ -48,7 +61,7 @@
     border: none;
   }
 
-  &__submit-btn {
+  &__confirm-btn {
     margin: 8px;
     margin-left: auto;
     border: none;

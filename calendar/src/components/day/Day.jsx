@@ -5,7 +5,7 @@ import Hour from '../hour/Hour';
 
 import './day.scss';
 
-const Day = ({ dataDay, dayEvents, deleteEventHandler }) => {
+const Day = ({ dataDay, dayEvents, deleteEventHandler, showInfoWindow }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
@@ -19,6 +19,7 @@ const Day = ({ dataDay, dayEvents, deleteEventHandler }) => {
         dataHour={hour}
         hourEvents={hourEvents}
         deleteEventHandler={deleteEventHandler}
+        showInfoWindow={showInfoWindow}
       />
     );
   });

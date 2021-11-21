@@ -7,7 +7,7 @@ import RedTimeLine from '../redTimeLine/RedTimeLine';
 
 import './week.scss';
 
-const Week = ({ weekDates, events, deleteEventHandler }) => (
+const Week = ({ weekDates, events, deleteEventHandler, showInfoWindow }) => (
   <div className="calendar__week">
     {weekDates.map(dayStart => {
       const dayEnd = new Date(dayStart.getTime()).setHours(dayStart.getHours() + 24);
@@ -26,6 +26,7 @@ const Week = ({ weekDates, events, deleteEventHandler }) => (
             dataDay={dayStart.getDate()}
             dayEvents={dayEvents}
             deleteEventHandler={deleteEventHandler}
+            showInfoWindow={showInfoWindow}
           />
           {curentDate === dateCurrentWeek && <RedTimeLine />}
         </div>
@@ -38,6 +39,7 @@ Week.propTypes = {
   weekDates: PropTypes.array.isRequired,
   events: PropTypes.array.isRequired,
   deleteEventHandler: PropTypes.func.isRequired,
+  showInfoWindow: PropTypes.func.isRequired,
 };
 
 export default Week;

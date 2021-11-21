@@ -1,0 +1,88 @@
+.edit_modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    background: #fff;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+}
+
+.edit_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #cccccc45;
+  z-index: 10;
+}
+
+.event_create-event {
+  display: flex;
+  flex-direction: column;
+  color: black;
+
+  &_buttons {
+    display: flex;
+  }
+
+  &__delete-btn {
+    margin-left: auto;
+    cursor: pointer;
+    outline: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+
+  &__close-btn {
+    margin-left: 25px;
+    padding: 0;
+    transform: rotate(45deg) scale(2);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background: transparent;
+  }
+
+  &__edit-btn {
+    margin-left: auto;
+    cursor: pointer;
+    margin: 8px;
+    margin-left: auto;
+    border: none;
+    color: #fff;
+    background-color: rgba(76, 71, 175, 1);
+    padding: 8px 16px;
+    border-radius: 8px;
+  }
+}
+
+.event {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin: 5px 0 20px 0;
+    &-h3 {
+      margin: 0;
+    }
+  }
+  &__date-from {
+    margin: 5px 0 20px 0;
+  }
+  &__date-to {
+    margin: 5px 0 20px 0;
+  }
+  &__description {
+    margin: 5px 0 20px 0;
+  }
+}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Event from '../event/Event';
 import { formatMins } from '../../utils/dateUtils.js';
 
-const Hour = ({ dataHour, hourEvents, deleteEventHandler }) => (
+const Hour = ({ dataHour, hourEvents, showInfoWindow }) => (
   <div className="calendar__time-slot" data-time={dataHour + 1}>
     {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
       const eventStart = `${new Date(dateFrom).getHours()}:${formatMins(
@@ -13,6 +13,8 @@ const Hour = ({ dataHour, hourEvents, deleteEventHandler }) => (
         new Date(dateTo).getMinutes(),
       )}`;
 
+      console.log();
+
       return (
         <Event
           key={id}
@@ -21,7 +23,9 @@ const Hour = ({ dataHour, hourEvents, deleteEventHandler }) => (
           time={`${eventStart} - ${eventEnd}`}
           title={title}
           id={id}
-          deleteEventHandler={deleteEventHandler}
+          showInfoWindow={showInfoWindow}
+          dateFrom={dateFrom}
+          dateTo={dateTo}
         />
       );
     })}
@@ -31,7 +35,7 @@ const Hour = ({ dataHour, hourEvents, deleteEventHandler }) => (
 Hour.propTypes = {
   dataHour: PropTypes.number.isRequired,
   hourEvents: PropTypes.array.isRequired,
-  deleteEventHandler: PropTypes.func.isRequired,
+  showInfoWindow: PropTypes.func.isRequired,
 };
 
 export default Hour;
