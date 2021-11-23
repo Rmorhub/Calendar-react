@@ -8,6 +8,25 @@ export const fetchEvents = () =>
     return response.json();
   });
 
+export const fetchEventsForEdit = eventId =>
+  fetch(`${baseUrl}/${eventId}`).then(response => {
+    if (!response.ok) {
+      throw new Error("Internal Server Error. Can't display events");
+    }
+    return response.json();
+  });
+
+export const fetchUpdatedEvent = (eventId, eventObj) =>
+  fetch(`${baseUrl}/${eventId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(eventObj),
+  }).then(response => {
+    if (!response.ok) throw new Error("Internal Server Error. Can't display events");
+  });
+
 export const createEvent = eventObj =>
   fetch(baseUrl, {
     method: 'POST',

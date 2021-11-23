@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
-import { isRender } from '../../gateway/eventsCheckSumbit';
+import './editModal.scss';
+import { isEdit } from '../../gateway/eventsCheckSumbit';
 
-import './modal.scss';
+const EditModal = ({
+  closeEditInfo,
+  setInfoEditObj,
+  infoEditObj,
+  fetchEventsHandler,
+  deleteEventHandler,
+  updatedEventsList,
+}) => {
+  const { infoShow, editModal, ...objectToUpdate } = infoEditObj;
+  const { id, title, dateFrom, dateTo, description } = objectToUpdate;
 
-const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow, updatedEventsList }) => {
-  const [eventObj, setEventObj] = useState({
-    title: '',
-    description: '',
-    date: '',
-    dateTo: '',
-    dateFrom: '',
-  });
+  const eventObjectToEdit = {
+    title,
+    date: moment(new Date(dateFrom)).format('YYYY-MM-DD'),
+    dateFrom: moment(new Date(dateFrom)).format('HH:mm'),
+    dateTo: moment(new Date(dateTo)).format('HH:mm'),
+    description,
+  };
+  const [eventObj, setEventObj] = useState(eventObjectToEdit);
 
   const handleChange = event => {
     setEventObj({
@@ -21,7 +32,7 @@ const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow, updatedEve
     });
   };
 
-  const sumbitBtn = event => {
+  const editBtn = event => {
     event.preventDefault();
 
     const eventData = {
@@ -30,17 +41,26 @@ const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow, updatedEve
       dateTo: new Date(`${eventObj.date} ${eventObj.dateTo}`),
     };
 
-    isRender(updatedEventsList, eventData, fetchEventsHandler, setCreatedWindow);
+    isEdit(updatedEventsList, id, eventData, setInfoEditObj, fetchEventsHandler);
   };
 
   return (
     <div className="modal overlay">
       <div className="modal__content">
-        <div className="create-event">
-          <button className="create-event__close-btn" onClick={closeEventBtn}>
-            +
-          </button>
-          <form className="event-form" onSubmit={sumbitBtn}>
+        <div className="edit_create-event">
+          <div className="edit_create-event_buttons">
+            <button
+              type="submit"
+              className="edit_create-event__delete-btn"
+              onClick={() => deleteEventHandler(id)}
+            >
+              <i className="fas fa-trash" />
+            </button>
+            <button className="edit_create-event__close-btn" onClick={closeEditInfo}>
+              +
+            </button>
+          </div>
+          <form className="event-form" onSubmit={editBtn}>
             <input
               type="text"
               name="title"
@@ -85,8 +105,8 @@ const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow, updatedEve
               onChange={handleChange}
               required
             ></textarea>
-            <button type="submit" className="event-form__submit-btn">
-              Create
+            <button type="submit" className="event-form__confirm-btn">
+              Confirm
             </button>
           </form>
         </div>
@@ -95,11 +115,13 @@ const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow, updatedEve
   );
 };
 
-Modal.propTypes = {
-  closeEventBtn: PropTypes.func.isRequired,
+EditModal.propTypes = {
+  closeEditInfo: PropTypes.func.isRequired,
+  setInfoEditObj: PropTypes.func.isRequired,
+  infoEditObj: PropTypes.object.isRequired,
   fetchEventsHandler: PropTypes.func.isRequired,
-  setCreatedWindow: PropTypes.func.isRequired,
+  deleteEventHandler: PropTypes.func.isRequired,
   updatedEventsList: PropTypes.array.isRequired,
 };
 
-export default Modal;
+export default EditModal;

@@ -25,6 +25,14 @@
   }
 }
 
+.finished-event {
+  background-color: rgb(146, 146, 146);
+  &:hover {
+    font-weight: bold;
+    background-color: rgb(70, 142, 160);
+  }
+}
+
 .delete-event {
   &-btn {
     position: absolute;
