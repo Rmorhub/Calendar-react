@@ -38,9 +38,8 @@ export const isRender = (updatedEventsList, eventData, fetchEventsHandler, setCr
   if (eventData.dateFrom > eventData.dateTo) {
     alert('The event cannot start later than end');
   } else if (canCreate) {
-    createEvent(eventData)
-      .then(() => fetchEventsHandler())
-      .then(setCreatedWindow(false));
+    createEvent(eventData).then(() => fetchEventsHandler());
+    setCreatedWindow(false);
   } else {
     alert('Events cannot across');
   }
