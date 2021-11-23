@@ -24,4 +24,4 @@
 - [React](https://en.reactjs.org/)
 
 ### Author:
-- Рожук Станислав
+- Stanislav Rozhuk
