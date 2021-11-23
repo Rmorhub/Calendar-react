@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { createEvent } from '../../gateway/eventsGateway';
+
+import { isRender } from '../../gateway/eventsCheckSumbit';
 
 import './modal.scss';
 
-const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow }) => {
+const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow, updatedEventsList }) => {
   const [eventObj, setEventObj] = useState({
     title: '',
     description: '',
@@ -29,12 +30,7 @@ const Modal = ({ closeEventBtn, fetchEventsHandler, setCreatedWindow }) => {
       dateTo: new Date(`${eventObj.date} ${eventObj.dateTo}`),
     };
 
-    const isCreate =
-      eventData.dateFrom > eventData.dateTo
-        ? alert('Event should be starting before ending , please input corrent time')
-        : createEvent(eventData).then(() => fetchEventsHandler()) && setCreatedWindow(false);
-
-    return isCreate;
+    isRender(updatedEventsList, eventData, fetchEventsHandler, setCreatedWindow);
   };
 
   return (
@@ -103,6 +99,7 @@ Modal.propTypes = {
   closeEventBtn: PropTypes.func.isRequired,
   fetchEventsHandler: PropTypes.func.isRequired,
   setCreatedWindow: PropTypes.func.isRequired,
+  updatedEventsList: PropTypes.array.isRequired,
 };
 
 export default Modal;

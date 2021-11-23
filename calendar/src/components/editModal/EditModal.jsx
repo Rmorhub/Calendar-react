@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { fetchUpdatedEvent } from '../../gateway/eventsGateway';
 
 import './editModal.scss';
+import { isEdit } from '../../gateway/eventsCheckSumbit';
 
 const EditModal = ({
   closeEditInfo,
@@ -11,9 +11,10 @@ const EditModal = ({
   infoEditObj,
   fetchEventsHandler,
   deleteEventHandler,
+  updatedEventsList,
 }) => {
-  const { infoShow, editModal, id, ...objectToUpdate } = infoEditObj;
-  const { title, dateFrom, dateTo, description } = objectToUpdate;
+  const { infoShow, editModal, ...objectToUpdate } = infoEditObj;
+  const { id, title, dateFrom, dateTo, description } = objectToUpdate;
 
   const eventObjectToEdit = {
     title,
@@ -40,14 +41,7 @@ const EditModal = ({
       dateTo: new Date(`${eventObj.date} ${eventObj.dateTo}`),
     };
 
-    const isUpdate =
-      eventData.dateFrom > eventData.dateTo
-        ? alert('Event should be starting before ending , please input corrent time')
-        : fetchUpdatedEvent(id, eventData)
-            .then(setInfoEditObj({ ...{}, ...{ isShow: false, editModal: false } }))
-            .then(fetchEventsHandler);
-
-    return isUpdate;
+    isEdit(updatedEventsList, id, eventData, setInfoEditObj, fetchEventsHandler);
   };
 
   return (
@@ -127,6 +121,7 @@ EditModal.propTypes = {
   infoEditObj: PropTypes.object.isRequired,
   fetchEventsHandler: PropTypes.func.isRequired,
   deleteEventHandler: PropTypes.func.isRequired,
+  updatedEventsList: PropTypes.array.isRequired,
 };
 
 export default EditModal;

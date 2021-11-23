@@ -51,16 +51,17 @@ const Calendar = ({ weekDates, setCreatedWindow, createdWindow }) => {
 
   const isModal = createdWindow && (
     <Modal
+    setCreatedWindow={setCreatedWindow}
+    updatedEventsList={updatedEventsList}
       closeEventBtn={closeEventBtn}
       fetchEventsHandler={fetchEventsHandler}
-      setCreatedWindow={setCreatedWindow}
     />
   );
 
   const isEventWindow = infoEditObj.infoShow && (
     <EventWindow
+    infoEditObj={infoEditObj}
       closeEditInfo={closeEditInfo}
-      infoEditObj={infoEditObj}
       modalEditWindow={modalEditWindow}
       deleteEventHandler={deleteEventHandler}
     />
@@ -68,9 +69,10 @@ const Calendar = ({ weekDates, setCreatedWindow, createdWindow }) => {
 
   const isEditModal = infoEditObj.editModal && (
     <EditModal
+      updatedEventsList={updatedEventsList}
+      infoEditObj={infoEditObj}
       closeEditInfo={closeEditInfo}
       setInfoEditObj={setInfoEditObj}
-      infoEditObj={infoEditObj}
       fetchEventsHandler={fetchEventsHandler}
       deleteEventHandler={deleteEventHandler}
     />
